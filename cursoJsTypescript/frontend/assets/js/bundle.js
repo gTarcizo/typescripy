@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/aula19-exercicio/form-controll.ts":
-/*!***********************************************!*\
-  !*** ./src/aula19-exercicio/form-controll.ts ***!
-  \***********************************************/
+/***/ "./src/aula20-this-em-functions/this-em-functions.ts":
+/*!***********************************************************!*\
+  !*** ./src/aula20-this-em-functions/this-em-functions.ts ***!
+  \***********************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -20,15 +20,17 @@ const user = document.querySelector('.username');
 const email = document.querySelector('.email');
 const password = document.querySelector('.password');
 const password2 = document.querySelector('.password2');
-form.addEventListener('submit', function (event) {
+const submitEvent = (event) => {
     event.preventDefault();
-    hideErrorMessages(this);
+    const target = event.target;
+    hideErrorMessages(target);
     checkEmptyFields(user, email, password, password2);
     checkEmail(email);
     checkEqualPassword(password, password2);
-    if (shouldSubmit(this))
+    if (shouldSubmit(target))
         form.submit();
-});
+};
+form.addEventListener('submit', submitEvent);
 const checkEmptyFields = (...inputs) => {
     inputs.forEach((input) => {
         if (!input.value)
@@ -589,12 +591,22 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 var exports = __webpack_exports__;
-/*!*******************************************!*\
-  !*** ./src/aula19-exercicio/exercicio.ts ***!
-  \*******************************************/
+/*!***********************************************!*\
+  !*** ./src/aula20-this-em-functions/teste.ts ***!
+  \***********************************************/
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-__webpack_require__(/*! ./form-controll */ "./src/aula19-exercicio/form-controll.ts");
+exports.funcao = void 0;
+__webpack_require__(/*! ./this-em-functions */ "./src/aula20-this-em-functions/this-em-functions.ts");
+//como usar this no código para não travar o this como escopo global
+function funcao(argumento1, argumento2) {
+    console.log(this);
+    console.log(argumento1);
+    console.log(argumento2);
+}
+exports.funcao = funcao;
+funcao.call(new Date(), 'TesteCall', 1);
+funcao.apply(new Date(), ['TesteApply', 2]);
 
 })();
 
