@@ -598,7 +598,6 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.funcao = void 0;
 __webpack_require__(/*! ./this-em-functions */ "./src/aula20-this-em-functions/this-em-functions.ts");
-//como usar this no código para não travar o this como escopo global
 function funcao(argumento1, argumento2) {
     console.log(this);
     console.log(argumento1);
